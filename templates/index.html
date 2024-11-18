@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetation Index Visualization</title>
+    <!-- Include Leaflet CSS for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <!-- Include Plotly JS for plotting -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Include jQuery for AJAX calls -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Leaflet JS for the map -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="./static/styles.css"/>
+</head>
+<body>
+<h1 style="font-size: 36px; color: #333; text-align: center;">식생 지수 시각화</h1>
+<p style="text-align: center;">
+    /load-data?image_name=<strong>sentinel2</strong>&station_name=<strong>부안</strong>&start_date=<strong>2024-01-01</strong>&end_date=<strong>2024-01-31</strong>
+</p>
+
+<p style="text-align: center;">
+    start_date default: <strong>2022-11-01</strong><br>
+    end_date default: <strong>2023-07-01</strong>
+</p>
+<!-- Dropdown for vegetation index selection -->
+<div class="form-container">
+<!--    <h2>입력 폼</h2>-->
+    <label for="image_name">이미지 이름:</label>
+<select id="image_name">
+    <option value="sentinel2">sentinel2</option>
+    <option value="landsat8">landsat8</option>
+    <option value="landsat9">landsat9</option>
+</select>
+    <label for="station_name">지역 이름:</label>
+<!--    <input type="text" id="region_name" value="부안">-->
+
+    <select id="station_name">
+    <option value="부안">부안</option>
+    <option value="익산">익산</option>
+    <option value="남원">남원</option>
+</select>
+
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" value="2024-01-01">
+
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" value="2024-01-31">
+
+    <!-- Button to fetch and plot the data -->
+<button id="fetchDataBtn">데이터 불러오기</button>
+</div>
+
+<br>
+
+<div class="form-container">
+    <label for="index_name">Select Vegetation Index:</label>
+    <select id="index_name">
+        <option value="NDVI">NDVI</option>
+        <option value="NDRE">NDRE</option>
+        <option value="CVI">CVI</option>
+        <option value="RVI">RVI</option>
+        <option value="GNDVI">GNDVI</option>
+    </select>
+</div>
+
+<br>
+
+<div id="plotly-chart" style="width:100%;height:500px;"></div>
+
+<br>
+
+<div id="map" style="height: 500px; width: 100%;"></div>
+
+<div id="loader" style="display: none;">
+    <div class="spinner"></div>
+</div>
+
+<script src="./static/scripts.js"></script>
+</body>
+</html>

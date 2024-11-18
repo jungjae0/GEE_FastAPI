@@ -1,0 +1,14 @@
+version: '3'
+
+
+services:
+  web:
+    build: .
+#    command: gunicorn dashboard_namwon.wsgi:application --bind 0.0.0.0:8001
+    command: python3 -u app.py
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 8900:8900
+    environment:
+       TZ: Asia/Seoul
